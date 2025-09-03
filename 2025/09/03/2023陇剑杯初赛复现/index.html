@@ -1,0 +1,634 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>2023陇剑杯初赛复现 | Sep's Blog</title><meta name="author" content="Sep"><meta name="copyright" content="Sep"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="数据分析-HW哥斯拉 流量分析 hard_web_11服务器开放了哪些端口，请按照端口大小顺序提交答案，并以英文逗号隔开(如服务器开放了80 81 82 83端口，则答案为80,81,82,83)   80,888,8888  首先进去，后找到http流量，可以得知服务器ip为192.168.162.180  TCP连接:SYN ACK RST UTG PSH FIN三次握手：发送端发送一个SYN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2023陇剑杯初赛复现">
+<meta property="og:url" content="https://sep252.github.io/2025/09/03/2023%E9%99%87%E5%89%91%E6%9D%AF%E5%88%9D%E8%B5%9B%E5%A4%8D%E7%8E%B0/index.html">
+<meta property="og:site_name" content="Sep&#39;s Blog">
+<meta property="og:description" content="数据分析-HW哥斯拉 流量分析 hard_web_11服务器开放了哪些端口，请按照端口大小顺序提交答案，并以英文逗号隔开(如服务器开放了80 81 82 83端口，则答案为80,81,82,83)   80,888,8888  首先进去，后找到http流量，可以得知服务器ip为192.168.162.180  TCP连接:SYN ACK RST UTG PSH FIN三次握手：发送端发送一个SYN">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sep252.github.io/avatar.jpg">
+<meta property="article:published_time" content="2025-09-03T09:14:16.000Z">
+<meta property="article:modified_time" content="2025-09-03T09:27:38.325Z">
+<meta property="article:author" content="Sep">
+<meta property="article:tag" content="流量">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sep252.github.io/avatar.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "2023陇剑杯初赛复现",
+  "url": "https://sep252.github.io/2025/09/03/2023%E9%99%87%E5%89%91%E6%9D%AF%E5%88%9D%E8%B5%9B%E5%A4%8D%E7%8E%B0/",
+  "image": "https://sep252.github.io/avatar.jpg",
+  "datePublished": "2025-09-03T09:14:16.000Z",
+  "dateModified": "2025-09-03T09:27:38.325Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Sep",
+      "url": "https://sep252.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/selin.ico"><link rel="canonical" href="https://sep252.github.io/2025/09/03/2023%E9%99%87%E5%89%91%E6%9D%AF%E5%88%9D%E8%B5%9B%E5%A4%8D%E7%8E%B0/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '2023陇剑杯初赛复现',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/a.css?1"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><div class="loading-img"></div><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (false) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+btf.addGlobalFn('pjaxSend', () => {
+  Pace.restart()
+}, 'pace_restart')
+
+</script><link rel="stylesheet" href="/css/a.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg" style="background-image: url(/background.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/search/"><i class="fa-fw fas fa-search"></i><span> 搜索</span></a></div><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><span> 列表</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/default_top_img.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/yingying.jpg" alt="Logo"><span class="site-name">Sep's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">2023陇剑杯初赛复现</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/search/"><i class="fa-fw fas fa-search"></i><span> 搜索</span></a></div><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><span> 列表</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">2023陇剑杯初赛复现</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-09-03T09:14:16.000Z" title="发表于 2025-09-03 17:14:16">2025-09-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-09-03T09:27:38.325Z" title="更新于 2025-09-03 17:27:38">2025-09-03</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="数据分析-HW"><a href="#数据分析-HW" class="headerlink" title="数据分析-HW"></a>数据分析-HW</h2><p>哥斯拉 流量分析</p>
+<h3 id="hard-web-1"><a href="#hard-web-1" class="headerlink" title="hard_web_1"></a>hard_web_1</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">服务器开放了哪些端口，请按照端口大小顺序提交答案，并以英文逗号隔开(如服务器开放了80 81 82 83端口，则答案为80,81,82,83)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>80,888,8888</strong></p>
+</blockquote>
+<p>首先进去，后找到http流量，可以得知服务器ip为192.168.162.180</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250828230626109.png" alt="image-20250828230626109"></p>
+<p><strong>TCP连接:SYN ACK RST UTG PSH FIN</strong><br><strong>三次握手：发送端发送一个SYN&#x3D;1，ACK&#x3D;0标志的数据包给接收端，请求进行连接，这是第一次握手；接收端收到请求并且允许连接的话，就会发送一个SYN&#x3D;1，ACK&#x3D;1标志的数据包给发送端，告诉它，可以通讯了，并且让发送端发送一个确认数据包，这是第二次握手；最后，发送端发送一个SYN&#x3D;0，ACK&#x3D;1的数据包给接收端，告诉它连接已被确认，这就是第三次握手。之后，一个TCP连接建立，开始通讯。</strong></p>
+<p><strong>所以如果成功建立连接的话，服务器会发送一个<code>synack</code>字段</strong></p>
+<p>所以我们可以筛选</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip.dst == 192.168.162.188 and tcp.connection.synack</span><br></pre></td></tr></table></figure>
+
+<p>或者</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcp.flags.syn == 1 &amp;&amp; tcp.flags.ack == 1</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250828230803362.png" alt="image-20250828230803362"></p>
+<p>得知开放了<code>80,888,8888</code>端口</p>
+<h3 id="hard-web-2"><a href="#hard-web-2" class="headerlink" title="hard_web_2"></a>hard_web_2</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">服务器中根目录下的flag值是多少</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>flag{9236b29d-5488-41e6-a04b-53b0d8276542}</strong></p>
+</blockquote>
+<p>需要分析webshell</p>
+<p>分析流量，可以看到</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250828231827247.png" alt="image-20250828231827247"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250828231716433.png" alt="image-20250828231716433"></p>
+<p>网站中有了shell.jsp流量，疑似上传了木马</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250828231913321.png" alt="image-20250828231913321"></p>
+<p>同时可以得到webshell的内容</p>
+<p>采用了AES-128加密payload和返回的内容，密钥是<code>748007e861908c031</code></p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">解密哥斯拉流量：</span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> 步骤 1：输入加密数据</span><br><span class="line">  将拆分出的 “加密请求体 / 响应体” 内容（十六进制或原始字节）粘贴到 Input 区域。</span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> 步骤 2：添加解密 Recipe</span><br><span class="line"></span><br><span class="line">  依次添加操作：</span><br><span class="line"></span><br><span class="line"><span class="bullet">  -</span> 若数据是十六进制形式，先加 <span class="code">`From Hex`</span>（转为原始字节）；</span><br><span class="line"><span class="bullet">  -</span> 再加<span class="code">`AES Decrypt`</span>，配置：</span><br><span class="line"><span class="bullet">    -</span> 密钥：<span class="code">`748007e861908c03`</span>（已知哥斯拉 AES 密钥，注意长度需符合 AES 标准，这里 16 字节即 AES-128 ）；</span><br><span class="line"><span class="bullet">    -</span> 模式：哥斯拉默认 <span class="code">`EBC`</span> 模式（需确认，若不对换 <span class="code">`CBC`</span> 等尝试）；</span><br><span class="line"><span class="bullet">    -</span> IV（初始向量）：若流量里有传递，需从 HTTP 头或体中提取；若未显式传递，哥斯拉可能用默认（或与密钥关联生成，需调试）。</span><br><span class="line"><span class="bullet">  -</span> 若解密后有乱码，补充 <span class="code">`Gunzip`</span>（因原始流量可能经 gzip 编码，虽 HTTP 流已解码，但加密前可能又压缩，需二次解压）。</span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> 步骤 3：执行解密</span><br><span class="line">  点击 <span class="code">`Run`</span>，Output 区域会显示解密后的明文（可能是哥斯拉的命令、回显等交互内容）。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">哥斯拉流量核心特征</span><br><span class="line"></span><br><span class="line">协议伪装：基于 HTTP/HTTPS 传输，用常见 Web 端口（80/443 等），请求方法多为 POST，响应码常伪装 200，混在正常流量中。</span><br><span class="line">加密混淆：</span><br><span class="line">采用 AES 对称加密（配固定密钥），请求 / 响应体为加密 “乱码块”（非明文 key=value），可能经 Gzip 二次压缩。</span><br><span class="line">流量体积极小（命令执行场景）或突发增大（文件传输场景 ）。</span><br><span class="line">交互模式：严格 “请求 - 响应”，必有来回流量（执行命令需回显结果 ）。</span><br><span class="line">代码层面特征</span><br><span class="line"></span><br><span class="line">硬编码密钥：内置 AES 密钥 748007e861908c03（16 字节，AES-128），用于加密通信。</span><br><span class="line">动态加载机制：通过自定义类加载器 X 动态加载加密的恶意字节码（payload），存储在 session 中，避免静态检测。</span><br><span class="line">加密 / 解密逻辑：含 x() 方法，基于 AES 实现请求体解密、响应体加密，默认 ECB 模式。</span><br><span class="line">请求处理：首次请求加载 payload，后续请求执行命令并加密返回结果，依赖 session 保持状态。</span><br><span class="line">处理步骤</span><br><span class="line"></span><br><span class="line">快速识别：</span><br><span class="line">过滤规则：http.request.method == &quot;POST&quot; &amp;&amp; http contains &quot;可疑路径（如 shell.jsp ）&quot;，筛选 “小体积加密 POST 流量”。</span><br><span class="line">对比正常流量：同路径下，请求体无明文参数、全为加密乱码 → 标记可疑。</span><br><span class="line">解密实锤：</span><br><span class="line">用 CyberChef 按 From Hex（转加密体）→ AES Decrypt（填密钥）→ Gunzip（解压缩） 流程解密 → 若出现命令 / 回显（如 whoami 结果 ），确认是哥斯拉。</span><br><span class="line">应急处置：</span><br><span class="line">服务端：删除 shell.jsp 等 webshell 文件，检查同目录 / 可疑文件（如近期新增、隐藏文件 ）。</span><br><span class="line">网络侧：封禁客户端 IP（若固定），在 WAF 添规则（拦截含加密特征的 POST ）。</span><br><span class="line">溯源：分析解密后的命令（如攻击者执行了哪些操作 ），排查内网横向渗透风险。</span><br></pre></td></tr></table></figure>
+
+<p>解密最后一个shell流量</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250828232431293.png" alt="image-20250828232431293"></p>
+<p>可以得到flag</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250828232506466.png" alt="image-20250828232506466"></p>
+<h3 id="hard-web-3"><a href="#hard-web-3" class="headerlink" title="hard_web_3"></a>hard_web_3</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">该webshell的连接密码是多少</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>14mk3y</strong></p>
+</blockquote>
+<p>倒数第五个请求解密之后可以看到</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250828233808387.png" alt="image-20250828233808387"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250828233831429.png" alt="image-20250828233831429"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250828233737075.png" alt="image-20250828233737075"></p>
+<p>md5查询获得秘钥</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250828232708700.png" alt="image-20250828232708700"></p>
+<h2 id="数据分析-WS"><a href="#数据分析-WS" class="headerlink" title="数据分析-WS"></a>数据分析-WS</h2><h3 id="Wireshark1-1"><a href="#Wireshark1-1" class="headerlink" title="Wireshark1_1"></a>Wireshark1_1</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">被入侵主机的IP是？</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>192.168.246.28</strong></p>
+</blockquote>
+<p>过滤tcp流量</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250829123353026.png" alt="image-20250829123353026"></p>
+<p>根据tcp的握手规则，可以得知被入侵的ip为<code>192.168.246.28</code></p>
+<h3 id="Wireshark1-2"><a href="#Wireshark1-2" class="headerlink" title="Wireshark1_2"></a>Wireshark1_2</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">被入侵主机的口令是？</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>youcannevergetthis</strong></p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250829123600030.png" alt="image-20250829123600030"></p>
+<h3 id="Wireshark1-3"><a href="#Wireshark1-3" class="headerlink" title="Wireshark1_3"></a>Wireshark1_3</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">用户目录下第二个文件夹的名称是？</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>Downloads</strong></p>
+</blockquote>
+<p>执行了ls命令</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250829123759422.png" alt="image-20250829123759422"></p>
+<h3 id="Wireshark1-4"><a href="#Wireshark1-4" class="headerlink" title="Wireshark1_4"></a>Wireshark1_4</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/passwd中倒数第二个用户的用户名是？</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>mysql</strong></p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250829123925402.png" alt="image-20250829123925402"></p>
+<h2 id="数据分析-SS"><a href="#数据分析-SS" class="headerlink" title="数据分析-SS"></a>数据分析-SS</h2><h3 id="sevrer-save-1"><a href="#sevrer-save-1" class="headerlink" title="sevrer save_1"></a>sevrer save_1</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">黑客是使用什么漏洞来拿下root权限的。格式为：CVE-2020-114514 本题附件见于平台公告的SS.zip，解压密码为c77ad47ba4c85fae66f08ec12e0085dd</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>CVE-2022-22965</strong></p>
+</blockquote>
+<p>打开流量包，观察导出对象列表，可以发现最后进行了命令执行</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250829143706411.png" alt="image-20250829143706411"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250829145137249.png" alt="image-20250829145137249"></p>
+<p>在流105之前的流104中，有greeting</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250829145208469.png" alt="image-20250829145208469"></p>
+<p>关键词搜索得到</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250829145725339.png" alt="image-20250829145725339"></p>
+<h3 id="sevrer-save-2"><a href="#sevrer-save-2" class="headerlink" title="sevrer save_2"></a>sevrer save_2</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">黑客反弹shell的ip和端口是什么，格式为：10.0.0.1:4444</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>192.168.43.128:2333</strong></p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250829145857014.png" alt="image-20250829145857014"></p>
+<h3 id="sevrer-save-3"><a href="#sevrer-save-3" class="headerlink" title="sevrer save_3"></a>sevrer save_3</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">黑客的病毒名称是什么？ 格式为：filename</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>main</strong></p>
+</blockquote>
+<p>流量中没什么东西了，去文件中看看</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250829151721453.png" alt="image-20250829151721453"></p>
+<p>同时目录中的.log.txt 文件也能看出端倪</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250829151725913.png" alt="image-20250829151725913"></p>
+<p>把main丢进微步沙箱中，</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250829152017304.png" alt="image-20250829152017304"></p>
+<p>可以进一步确实，main为木马文件</p>
+<h3 id="sevrer-save-4"><a href="#sevrer-save-4" class="headerlink" title="sevrer save_4"></a>sevrer save_4</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">黑客的病毒运行后创建了什么用户？请将回答用户名与密码：username:password</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>ll:123456</strong></p>
+</blockquote>
+<p>在&#x2F;etc&#x2F;passwd和&#x2F;etc&#x2F;shadow可以分别发现用户名和密码</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250829152330408.png" alt="image-20250829152330408"></p>
+<h3 id="sevrer-save-5"><a href="#sevrer-save-5" class="headerlink" title="sevrer save_5"></a>sevrer save_5</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">服务器在被入侵时外网ip是多少? 格式为：10.10.0.1</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>172.105.202.239</strong></p>
+</blockquote>
+<p>在之前的log文件中可以得知外网ip</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250829151725913.png" alt="image-20250829151725913"></p>
+<h3 id="sevrer-save-6"><a href="#sevrer-save-6" class="headerlink" title="sevrer save_6"></a>sevrer save_6</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">病毒运行后释放了什么文件？格式：文件1,文件2</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>lolMiner,mine_doge.sh</strong></p>
+</blockquote>
+<p>根据微步的分析，加之log文件可知为lolMiner,mine_doge.sh</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250829152932970.png" alt="image-20250829152932970"></p>
+<h3 id="sevrer-save-7"><a href="#sevrer-save-7" class="headerlink" title="sevrer save_7"></a>sevrer save_7</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">矿池地址是什么？ 格式：domain:1234</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>doge.millpools.cc:5567</strong></p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250829154430631.png" alt="image-20250829154430631"></p>
+<h3 id="sevrer-save-8"><a href="#sevrer-save-8" class="headerlink" title="sevrer save_8"></a>sevrer save_8</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">黑客的钱包地址是多少？格式：xx:xxxxxxxx</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>DRXz1q6ys8Ao2KnPbtb7jQhPjDSqtwmNN9.lolMinerWorker</strong></p>
+</blockquote>
+<p>同上</p>
+<h2 id="数据分析-EW"><a href="#数据分析-EW" class="headerlink" title="数据分析-EW"></a>数据分析-EW</h2><h3 id="ez-web-1"><a href="#ez-web-1" class="headerlink" title="ez_web_1"></a>ez_web_1</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">题目内容：服务器自带的后门文件名是什么？（含文件后缀）</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>ViewMore.php</strong></p>
+</blockquote>
+<p>看导出对象，最后基本是d00r.php，并且进行了命令执行</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250829163928989.png" alt="image-20250829163928989"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250829164052470.png" alt="image-20250829164052470"></p>
+<p>搜索d00r.php可以发现，最开始在ViewMore.php文件下写了d00r.php，可得知自带的后门文件为ViewMore.php</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250829164731647.png" alt="image-20250829164731647"></p>
+<h3 id="ez-web-2"><a href="#ez-web-2" class="headerlink" title="ez_web_2"></a>ez_web_2</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">题目内容：服务器的内网IP是多少？</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>192.168.101.132</strong></p>
+</blockquote>
+<p>在之后的流量中可以看到执行了ifconfig查看</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250829170509619.png" alt="image-20250829170509619"></p>
+<h3 id="ez-web-3"><a href="#ez-web-3" class="headerlink" title="ez_web_3"></a>ez_web_3</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">题目内容：攻击者往服务器中写入的key是什么？</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>7d9ddff2-2d67-4eba-9e48-b91c26c42337</strong></p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250829171323084.png" alt="image-20250829171323084"></p>
+<p>同时在之前的看到密码</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250829171822054.png" alt="image-20250829171822054"></p>
+<p>解url编码后解base64后解压可得</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250829171922770.png" alt="image-20250829171922770"></p>
+<h2 id="数据分析-SSW"><a href="#数据分析-SSW" class="headerlink" title="数据分析-SSW"></a>数据分析-SSW</h2><h3 id="SmallSword-1"><a href="#SmallSword-1" class="headerlink" title="SmallSword_1"></a>SmallSword_1</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">连接蚁剑的正确密码是______________?（答案示例：123asd）</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>6ea280898e404bfabd0ebb702327b18f</strong></p>
+</blockquote>
+<p>进入后在导出对象中发现了sql联合注入的痕迹</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250830144957715.png" alt="image-20250830144957715"></p>
+<p>在流74中发现了写入木马</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250830150011770.png" alt="image-20250830150011770"></p>
+<p>显然蚁剑密码是<code>6ea280898e404bfabd0ebb702327b18f</code>但是不对，在之后的执行命令的流中可以发现变为了<code>6ea280898e404bfabd0ebb702327b19f</code></p>
+<p>中间隔着几个tls流量，貌似改变了密钥</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250830151225031.png" alt="image-20250830151225031"></p>
+<h3 id="SmallSword-2"><a href="#SmallSword-2" class="headerlink" title="SmallSword_2"></a>SmallSword_2</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">攻击者留存的值是______________?(答案示例：d1c3f0d3-68bb-4d85-a337-fb97cf99ee2e)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>ad6269b7-3ce2-4ae8-b97f-f259515e7a91</strong></p>
+</blockquote>
+<p>搜索<code>antsword</code>在某一个流中发现有hacker.txt，攻击者的留存值大概就在这</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250830165840288.png" alt="image-20250830165840288"></p>
+<p>然后找一下前后流量</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250830170326997.png" alt="image-20250830170326997"></p>
+<h3 id="SmallSword-3"><a href="#SmallSword-3" class="headerlink" title="SmallSword_3"></a>SmallSword_3</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">题目内容：攻击者下载到的flag是______________?(答案示例：flag3&#123;uuid&#125;)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>flag3{8f0dffac-5801-44a9-bd49-e66192ce4f57}</strong></p>
+</blockquote>
+<p>在130和137的tcp流的相应包中都发现了exe程序的踪影</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250830171541027.png" alt="image-20250830171541027"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250830171600195.png" alt="image-20250830171600195"></p>
+<p>解码发现和huorong.exe有关</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250830171641066.png" alt="image-20250830171641066"></p>
+<p>将130的流中的另存为，010编辑把MZ头之前的删除，运行程序</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250830172835244.png" alt="image-20250830172835244"></p>
+<p>在上层目录中发现了一张图片，但是貌似高度不对，随波逐流改一下</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250830173328751.png" alt="image-20250830173328751"></p>
+<h2 id="数据分析-BF"><a href="#数据分析-BF" class="headerlink" title="数据分析-BF"></a>数据分析-BF</h2><h3 id="baby-forensics-1"><a href="#baby-forensics-1" class="headerlink" title="baby_forensics_1"></a>baby_forensics_1</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">题目内容：磁盘中的key是多少？</span><br><span class="line"></span><br><span class="line">压缩包密码：4cf611fce4a2fec305e54c2766b7c860</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>2e80307085fd2b5c49c968c323ee25d5</strong></p>
+</blockquote>
+<p>估计内存文件中可能会有</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250830180510737.png" alt="image-20250830180510737"></p>
+<p>丢给随波逐流</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250830180545631.png" alt="image-20250830180545631"></p>
+<h3 id="baby-forensics-2"><a href="#baby-forensics-2" class="headerlink" title="baby_forensics_2"></a>baby_forensics_2</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">题目内容：电脑中正在运行的计算器的运行结果是多少？</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>7598632541</strong></p>
+</blockquote>
+<p>使用vol2中的windows命令查看程序窗口句柄信息，搜索calc.exe，可以在一处找到数字</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250830181509444.png" alt="image-20250830181509444"></p>
+<p>但是为了保险起见还是去程序进程那gimp一下</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250830182637978.png" alt="image-20250830182637978"></p>
+<h3 id="baby-forensics-3"><a href="#baby-forensics-3" class="headerlink" title="baby_forensics_3"></a>baby_forensics_3</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">题目内容：该内存文件中存在的flag值是多少？</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>flag{ad9bca48-c7b0-4bd6-b6fb-aef90090bb98}</strong></p>
+</blockquote>
+<p>在开机自启动项目中有个便签程序，搜索得知便签文件的后缀为snt</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250830193831518.png" alt="image-20250830193831518"></p>
+<p>去找一下便签的文件，导出</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250830203509440.png" alt="image-20250830203509440"></p>
+<p>导出后用win7打开</p>
+<p>用qemu将vmdk文件转为raw文件<code>qemu-img.exe convert -p -f vmdk -O raw baby_forensics.vmdk aa.raw</code>,然后使用passware爆破bitlocker密码</p>
+<p>（因为passware不支持vmdk）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250830212345193.png" alt="image-20250830212345193"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">560604-255013-655633-128854-663223-316063-484946-476498</span><br></pre></td></tr></table></figure>
+
+<p>结果发现这只是一个系统盘，艹</p>
+<p>还是老老实实找个win7打开吧</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250830220514056.png" alt="image-20250830220514056"></p>
+<p>得到密文<code>U2FsdGVkX195MCsw0ANs6/Vkjibq89YlmnDdY/dCNKRkixvAP6+B5ImXr2VIqBSp 94qfIcjQhDxPgr9G4u++pA==</code>，然后在Music文件夹下的i4k3y文件中发现密钥q（这个在内存中搜索leet的key就能找到）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250830214627011.png" alt="image-20250830214627011"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250830221138127.png" alt="image-20250830221138127"></p>
+<p>得到flag</p>
+<h2 id="数据分析-TP"><a href="#数据分析-TP" class="headerlink" title="数据分析-TP"></a>数据分析-TP</h2><h3 id="tcpdump-1"><a href="#tcpdump-1" class="headerlink" title="tcpdump_1"></a>tcpdump_1</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">攻击者通过暴力破解进入了某Wiki 文档，请给出登录的用户名与密码，以:拼接，比如admin:admin</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>TMjpxFGQwD:123457</strong></p>
+</blockquote>
+<p>筛选流量</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250831153430684.png" alt="image-20250831153430684"></p>
+<p>发现errcode为200的流量，<code>username=TMjpxFGQwD&amp;password=123457</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250831153352916.png" alt="image-20250831153352916"></p>
+<h3 id="tcpdump-2"><a href="#tcpdump-2" class="headerlink" title="tcpdump_2"></a>tcpdump_2</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">攻击者发现软件存在越权漏洞，请给出攻击者越权使用的cookie的内容的md5值。（32位小写）</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>383c74db4e32513daaa1eeb1726d7255</strong></p>
+</blockquote>
+<p>将cookie列为列，筛选<code>(http) and http.cookie</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250831165442864.png" alt="image-20250831165442864"></p>
+<p>观察cookie的变化可以看出从2到1，体现越权,md5即可</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250901123615699.png" alt="image-20250901123615699"></p>
+<h3 id="tcpdump-3"><a href="#tcpdump-3" class="headerlink" title="tcpdump_3"></a>tcpdump_3</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">攻击使用jdbc漏洞读取了应用配置文件，给出配置中的数据库账号密码，以:拼接，比如root:123456</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>zyplayer:1234567</strong></p>
+</blockquote>
+<p>搜索<code>jdbc</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250901132620108.png" alt="image-20250901132620108"></p>
+<p>最后在jdbc的应用配置文件application.yml中发现<code>zyplayer:1234567</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250901132256865.png" alt="image-20250901132256865"></p>
+<h3 id="tcpdump-4"><a href="#tcpdump-4" class="headerlink" title="tcpdump_4"></a>tcpdump_4</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">攻击者又使用了CVE漏洞攻击应用，执行系统命令，请给出此CVE编号以及远程EXP的文件名，使用:拼接，比如CVE-2020-19817:exp.so</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>CVE-2022-21724:custom.dtd.xml</strong></p>
+</blockquote>
+<p>在这个文件中，反弹了shell</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250901133929163.png" alt="image-20250901133929163"></p>
+<p>同时在之前的流中</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250901134141041.png" alt="image-20250901134141041"></p>
+<p>搜索可以知道cve<code>CVE-2022-217241</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250901134216248.png" alt="image-20250901134216248"></p>
+<h3 id="tcpdump-5"><a href="#tcpdump-5" class="headerlink" title="tcpdump_5"></a>tcpdump_5</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">给出攻击者获取系统权限后，下载的工具的名称，比如nmap</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>fscan</strong></p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250901134631966.png" alt="image-20250901134631966"></p>
+<h2 id="数据分析-HD"><a href="#数据分析-HD" class="headerlink" title="数据分析-HD"></a>数据分析-HD</h2><h3 id="hacked-1"><a href="#hacked-1" class="headerlink" title="hacked_1"></a>hacked_1</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">admIn用户的密码是什么？</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>flag{WelC0m5_TO_H3re}</strong></p>
+</blockquote>
+<p>在wireshark中发现了登录的流量，追踪tcp流可知</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250901201844893.png" alt="image-20250901201844893"></p>
+<p>上下看一下</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250901201827231.png" alt="image-20250901201827231"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250901201815677.png" alt="image-20250901201815677"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250901201651143.png" alt="image-20250901201651143"></p>
+<h3 id="hacked-2"><a href="#hacked-2" class="headerlink" title="hacked_2"></a>hacked_2</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.config[&#x27;SECRET_KEY&#x27;]值为多少？</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>ssti_flask_hsfvaldb</strong></p>
+</blockquote>
+<p>在某一个流中</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250901202408518.png" alt="image-20250901202408518"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250901202353461.png" alt="image-20250901202353461"></p>
+<p>执行了命令</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250901202241716.png" alt="image-20250901202241716"></p>
+<h3 id="hacked-3"><a href="#hacked-3" class="headerlink" title="hacked_3"></a>hacked_3</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flask网站由哪个用户启动？</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>red</strong></p>
+</blockquote>
+<p>注意到cookie的session在变化</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250901211431909.png" alt="image-20250901211431909"></p>
+<p>分别解密这两个cookie可得为<code>red</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250901221009442.png" alt="image-20250901221009442"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250901221102538.png" alt="image-20250901221102538"></p>
+<h3 id="hacked-4"><a href="#hacked-4" class="headerlink" title="hacked_4"></a>hacked_4</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">攻击者写入的内存马的路由名叫什么？（答案里不需要加/）</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>Index</strong></p>
+</blockquote>
+<p>注意到有一个index，解密看看</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250901221244745.png" alt="image-20250901221244745"></p>
+<p>无法解密，看看之前的流</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250901221459248.png" alt="image-20250901221459248"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250901221531963.png" alt="image-20250901221531963"></p>
+<p>可以看到在&#x2F;Index下写了内存马</p>
+<h2 id="数据分析-IR"><a href="#数据分析-IR" class="headerlink" title="数据分析-IR"></a>数据分析-IR</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">你是公司的一名安全运营工程师，今日接到外部监管部门通报，你公司网络出口存在请求挖矿域名的行为。需要立即整改。经过与网络组配合，你们定位到了请求挖矿域名的内网IP是10.221.36.21。查询CMDB后得知该IP运行了公司的工时系统。（虚拟机账号密码为：root/IncidentResponsePasswd）</span><br></pre></td></tr></table></figure>
+
+<p>OVA 文件的取证核心是对其包含的<strong>虚拟磁盘文件</strong>（如<code>.vmdk</code>）和<strong>配置文件</strong>（<code>.ovf</code>）进行解析，提取与案件相关的证据。</p>
+<p>双击OVA 文件会在<strong>VMware中</strong>新建一个虚拟机打开，也可直接进行<strong>解压</strong></p>
+<h3 id="IncidentResponse-1"><a href="#IncidentResponse-1" class="headerlink" title="IncidentResponse_1"></a>IncidentResponse_1</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">挖矿程序所在路径是？（答案中如有空格均需去除，如有大写均需变为小写，使用echo -n &#x27;strings&#x27;|md5sum|cut -d &#x27; &#x27; -f1获取md5值作为答案）</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>6f72038a870f05cbf923633066e48881</strong></p>
+</blockquote>
+<p>虚拟机打开后起一下网卡，windterm连接，<code>ls -lha --sort=t</code>查看目录下文件的修改时间</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250902203441655.png" alt="image-20250902203441655"></p>
+<p>发现最近修改了bash_history和viminfo，查看内容，在<code>.viminfo</code>中发现大量修改了redis的文件</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250902204428571.png" alt="image-20250902204428571"></p>
+<p>查看redis的配置文件<code>/etc/config/redis.conf</code>，看到pools池有个奇怪的url</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250902205744326.png" alt="image-20250902205744326"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250902210322279.png" alt="image-20250902210322279"></p>
+<p>可以确实为redis程序，路径<code>/etc/redis/redis-server</code></p>
+<p>从文件内容看，这是 <strong>Redis 配置文件被恶意篡改植入挖矿脚本</strong> 的典型特征，以下是详细分析：</p>
+<ol>
+<li>文件与场景识别</li>
+</ol>
+<ul>
+<li>文件路径：<code>/etc/redis/redis.conf</code>（Redis 核心配置文件），被篡改后注入了非 Redis 标准的配置项。</li>
+<li>工具痕迹：<code>R-Viewer</code> 是远程文件查看工具，说明攻击者或运维可能通过远程方式访问系统文件。</li>
+</ul>
+<ol>
+<li>关键恶意配置分析</li>
+</ol>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;url&quot;</span>: <span class="string">&quot;donate.v2.xmrig.com:3333&quot;</span>,</span><br><span class="line"><span class="string">&quot;user&quot;</span>: <span class="string">&quot;YOUR_WALLET_ADDRESS&quot;</span>,</span><br></pre></td></tr></table></figure>
+
+<p>这是 XMRig 挖矿程序 的配置片段：</p>
+<ul>
+<li><code>url</code>：指向 XMRig 挖矿池（<code>donate.v2.xmrig.com</code> 是知名门罗币挖矿池），用于接收挖矿指令、上报算力。</li>
+<li><code>user</code>：攻击者的门罗币钱包地址，挖矿收益会转入该地址。</li>
+</ul>
+<p>挖矿程序所在路径就是&#x2F;etc&#x2F;redis&#x2F;redis-server</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250902210513286.png" alt="image-20250902210513286"></p>
+<h3 id="IncidentResponse-2"><a href="#IncidentResponse-2" class="headerlink" title="IncidentResponse_2"></a>IncidentResponse_2</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">挖矿程序连接的矿池域名是？（答案中如有空格均需去除，如有大写均需变为小写，使用echo -n &#x27;strings&#x27;|md5sum|cut -d &#x27; &#x27; -f1获取md5值作为答案）</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>3fca20bb92d0ed67714e68704a0a4503</strong></p>
+</blockquote>
+<p>由上题可知</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250902210848841.png" alt="image-20250902210848841"></p>
+<h3 id="IncidentResponse-3"><a href="#IncidentResponse-3" class="headerlink" title="IncidentResponse_3"></a>IncidentResponse_3</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">攻击者入侵服务器的利用的方法是？（答案中如有空格均需去除，如有大写均需变为小写，使用echo -n &#x27;strings&#x27;|md5sum|cut -d &#x27; &#x27; -f1获取md5值作为答案）</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>3ee726cb32f87a15d22fe55fa04c4dcd</strong></p>
+</blockquote>
+<p>在之前看bash_history文件发现启动了jar包</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250902211318073.png" alt="image-20250902211318073"></p>
+<p>在windterm中把jar包的日志和jar包下载下来分析，在日志中看到了shiro的内容</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250902212219722.png" alt="image-20250902212219722"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250903124411929.png" alt="image-20250903124411929"></p>
+<p>Shiro反序列化</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo -n &#x27;shirodeserialization&#x27;|md5sum|cut -d &#x27;&#x27; -f1</span><br><span class="line">3ee726cb32f87a15d22fe55fa04c4dcd</span><br></pre></td></tr></table></figure>
+
+<h3 id="IncidentResponse-4"><a href="#IncidentResponse-4" class="headerlink" title="IncidentResponse_4"></a>IncidentResponse_4</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">攻击者的IP是？（答案中如有空格均需去除，如有大写均需变为小写，使用echo -n &#x27;strings&#x27;|md5sum|cut -d &#x27; &#x27; -f1获取md5值作为答案）</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>c76b4b1a5e8c9e7751af4684c6a8b2c9</strong></p>
+</blockquote>
+<p>获取攻击者 IP 的核心方法是从<strong>登录记录</strong>和<strong>网络访问日志</strong>中提取异常 IP，具体如下：</p>
+<ol>
+<li><strong>通过系统登录记录定位</strong><br>执行 <code>last</code> 命令查看用户登录历史，筛选出非管理员常用的异常 IP（如陌生公网 IP、与挖矿程序植入时间吻合的登录 IP），这些 IP 大概率是攻击者通过 SSH 等方式直接登录服务器的地址。</li>
+<li><strong>通过 Nginx 访问日志定位</strong><br>查看 Nginx 访问日志（<code>tail /var/log/nginx/access.log</code>），寻找频繁发送异常请求（如漏洞利用 Payload、恶意路径访问）的 IP，这类 IP 通常是攻击者通过 Web 漏洞（如之前提到的 JAR 包漏洞）入侵时使用的源地址。</li>
+</ol>
+<p><strong>查看登录记录</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250903141949992.png" alt="image-20250903141949992"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250903142017433.png" alt="image-20250903142017433"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250903142204178.png" alt="image-20250903142204178"></p>
+<h3 id="IncidentResponse-5"><a href="#IncidentResponse-5" class="headerlink" title="IncidentResponse_5"></a>IncidentResponse_5</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">攻击者发起攻击时使用的User-Agent是？（答案中如有空格均需去除，如有大写均需变为小写，使用echo -n &#x27;strings&#x27;|md5sum|cut -d &#x27; &#x27; -f1获取md5值作为答案）</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>6ba8458f11f4044cce7a621c085bb3c6</strong></p>
+</blockquote>
+<p>在上上图的日志中发现攻击者的UA是<code>Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html)</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250903142347207.png" alt="image-20250903142347207"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250903142444821.png" alt="image-20250903142444821"></p>
+<h3 id="IncidentResponse-6"><a href="#IncidentResponse-6" class="headerlink" title="IncidentResponse_6"></a>IncidentResponse_6</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">攻击者使用了两种权限维持手段，相应的配置文件路径是？(md5加密后以a开头)（答案中如有空格均需去除，如有大写均需变为小写，使用echo -n &#x27;strings&#x27;|md5sum|cut -d &#x27; &#x27; -f1获取md5值作为答案）</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>a1fa1b5aeb1f97340032971c342c4258</strong></p>
+</blockquote>
+<p>查看ssh目录下的文件</p>
+<ol>
+<li><strong>authorized_keys 文件</strong>：存储允许登录本服务器的 SSH 公钥。若有陌生公钥，可能是攻击者植入用于免密登录 。<code>cat authorized_keys</code> 输出了公钥内容，可用于排查是否有未授权公钥添加。可能是攻击者（用 Kali 系统）植入的公钥，用于后续持久化访问。</li>
+<li><strong>id_rsa.pub 文件</strong>：是当前服务器的 SSH 公钥，可用于识别本服务器的 SSH 身份，若被泄露，他人可能模拟身份。</li>
+</ol>
+<p><strong>查看日志文件</strong></p>
+<p>Ubuntu系统对应日志文件是 <code>/var/log/auth.log</code>，功能与 <code>secure</code> 一致，记录系统认证相关事件（SSH 登录是典型场景 ）。</p>
+<p>找到该文件后进行恢复，查看分析，同样可以看到进行了公钥认证</p>
+<p>经过爆破无果后，利用公私钥成功登录了系统，应该是通过某种方式写入了公钥，配置文件路径一般都是<code>/root/.ssh/authorized_keys</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250903143734085.png" alt="image-20250903143734085"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250903144851193.png" alt="image-20250903144851193"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250903144943819.png" alt="image-20250903144943819"></p>
+<h3 id="IncidentResponse-7"><a href="#IncidentResponse-7" class="headerlink" title="IncidentResponse_7"></a>IncidentResponse_7</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">攻击者使用了两种权限维持手段，相应的配置文件路径是？(md5加密后以b开头)（答案中如有空格均需去除，如有大写均需变为小写，使用echo -n &#x27;strings&#x27;|md5sum|cut -d &#x27; &#x27; -f1获取md5值作为答案）</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>b2c5af8ce08753894540331e5a947d35</strong></p>
+</blockquote>
+<p>需要寻找另一种权限维持</p>
+<p>一、定时任务与提权检测</p>
+<ol>
+<li><p><strong>基础定时任务排查</strong>：执行 <code>crontab -l</code> ，检查当前用户（如 root ）是否有直接配置的定时任务，排查简单定时脚本后门。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250903164421132.png" alt="image-20250903164421132"></p>
+</li>
+<li><p><strong>SUID 权限审计</strong>：通过 <code>find / -perm -u=s -type f 2&gt;/dev/null</code> ，查找系统中带 SUID 权限的文件（此类文件因特殊权限，可能被攻击者利用提权 ），验证是否存在异常文件。</p>
+</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250903164407291.png" alt="image-20250903164407291"></p>
+<p>查看影子账户，没有什么东西</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250903170842326.png" alt="image-20250903170842326"></p>
+<p>二、<strong>系统服务状态检测</strong></p>
+<p>执行 <code>systemctl list-unit-files --type=service</code> ，列出所有 systemd 服务的启用状态，筛选出异常启用的服务（如陌生服务、正常服务被篡改用途 ），重点标记需深度校验的服务（如案例中 <code>redis.service</code> ）。</p>
+<p>三、<strong>敏感服务配置审计</strong></p>
+<p>针对标记的可疑服务（如 <code>redis.service</code> ），定位其 systemd 配置文件（常规路径为 <code>/lib/systemd/system/[服务名].service</code> ），执行 <code>cat [配置文件路径]</code> 查看内容。重点检查 <code>ExecStart</code> 等启动指令字段，判断是否被注入恶意命令（如挖矿程序启动逻辑 ），确认服务是否被用作权限维持后门。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250903170516668.png" alt="image-20250903170516668"></p>
+<p>看到挖矿程序被间歇反复重启，故第二种维权中的配置文件路径为&#x2F;lib&#x2F;systemd&#x2F;system&#x2F;redis.service</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250903170543496.png" alt="image-20250903170543496"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://sep252.github.io">Sep</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://sep252.github.io/2025/09/03/2023%E9%99%87%E5%89%91%E6%9D%AF%E5%88%9D%E8%B5%9B%E5%A4%8D%E7%8E%B0/">https://sep252.github.io/2025/09/03/2023%E9%99%87%E5%89%91%E6%9D%AF%E5%88%9D%E8%B5%9B%E5%A4%8D%E7%8E%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://sep252.github.io" target="_blank">Sep's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%B5%81%E9%87%8F/">流量</a></div><div class="post-share"><div class="social-share" data-image="/avatar.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2025/08/20/2025%E9%95%BF%E5%9F%8E%E6%9D%AF-%E5%8D%8A%E5%86%B3%E8%B5%9B-%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/" title="2025长城杯-半决赛-应急响应"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">2025长城杯-半决赛-应急响应</div></div><div class="info-2"><div class="info-item-1">2025长城杯国赛半决赛 应急响应小路是一名网络安全网管，据反映发现公司主机上有异常外联信息，据回忆前段时间执行过某些更新脚本（已删除），现在需要协助小路同学进行网络安全应急响应分析，查找木马，进一步分析，寻找攻击源头，获取攻击者主机权限获取 flag...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Sep</div><div class="author-info-description">Sep的个人blog</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/sep252" target="_blank" title="GitHub"><i class="fab fa-github" style="color: #hdhfbb;"></i></a><a class="social-icon" href="mailto:2967419306@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #000000;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-HW"><span class="toc-number">1.</span> <span class="toc-text">数据分析-HW</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#hard-web-1"><span class="toc-number">1.1.</span> <span class="toc-text">hard_web_1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hard-web-2"><span class="toc-number">1.2.</span> <span class="toc-text">hard_web_2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hard-web-3"><span class="toc-number">1.3.</span> <span class="toc-text">hard_web_3</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-WS"><span class="toc-number">2.</span> <span class="toc-text">数据分析-WS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Wireshark1-1"><span class="toc-number">2.1.</span> <span class="toc-text">Wireshark1_1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Wireshark1-2"><span class="toc-number">2.2.</span> <span class="toc-text">Wireshark1_2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Wireshark1-3"><span class="toc-number">2.3.</span> <span class="toc-text">Wireshark1_3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Wireshark1-4"><span class="toc-number">2.4.</span> <span class="toc-text">Wireshark1_4</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-SS"><span class="toc-number">3.</span> <span class="toc-text">数据分析-SS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sevrer-save-1"><span class="toc-number">3.1.</span> <span class="toc-text">sevrer save_1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sevrer-save-2"><span class="toc-number">3.2.</span> <span class="toc-text">sevrer save_2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sevrer-save-3"><span class="toc-number">3.3.</span> <span class="toc-text">sevrer save_3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sevrer-save-4"><span class="toc-number">3.4.</span> <span class="toc-text">sevrer save_4</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sevrer-save-5"><span class="toc-number">3.5.</span> <span class="toc-text">sevrer save_5</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sevrer-save-6"><span class="toc-number">3.6.</span> <span class="toc-text">sevrer save_6</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sevrer-save-7"><span class="toc-number">3.7.</span> <span class="toc-text">sevrer save_7</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sevrer-save-8"><span class="toc-number">3.8.</span> <span class="toc-text">sevrer save_8</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-EW"><span class="toc-number">4.</span> <span class="toc-text">数据分析-EW</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ez-web-1"><span class="toc-number">4.1.</span> <span class="toc-text">ez_web_1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ez-web-2"><span class="toc-number">4.2.</span> <span class="toc-text">ez_web_2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ez-web-3"><span class="toc-number">4.3.</span> <span class="toc-text">ez_web_3</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-SSW"><span class="toc-number">5.</span> <span class="toc-text">数据分析-SSW</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SmallSword-1"><span class="toc-number">5.1.</span> <span class="toc-text">SmallSword_1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SmallSword-2"><span class="toc-number">5.2.</span> <span class="toc-text">SmallSword_2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SmallSword-3"><span class="toc-number">5.3.</span> <span class="toc-text">SmallSword_3</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-BF"><span class="toc-number">6.</span> <span class="toc-text">数据分析-BF</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#baby-forensics-1"><span class="toc-number">6.1.</span> <span class="toc-text">baby_forensics_1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#baby-forensics-2"><span class="toc-number">6.2.</span> <span class="toc-text">baby_forensics_2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#baby-forensics-3"><span class="toc-number">6.3.</span> <span class="toc-text">baby_forensics_3</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-TP"><span class="toc-number">7.</span> <span class="toc-text">数据分析-TP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#tcpdump-1"><span class="toc-number">7.1.</span> <span class="toc-text">tcpdump_1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tcpdump-2"><span class="toc-number">7.2.</span> <span class="toc-text">tcpdump_2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tcpdump-3"><span class="toc-number">7.3.</span> <span class="toc-text">tcpdump_3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tcpdump-4"><span class="toc-number">7.4.</span> <span class="toc-text">tcpdump_4</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tcpdump-5"><span class="toc-number">7.5.</span> <span class="toc-text">tcpdump_5</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-HD"><span class="toc-number">8.</span> <span class="toc-text">数据分析-HD</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#hacked-1"><span class="toc-number">8.1.</span> <span class="toc-text">hacked_1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hacked-2"><span class="toc-number">8.2.</span> <span class="toc-text">hacked_2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hacked-3"><span class="toc-number">8.3.</span> <span class="toc-text">hacked_3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hacked-4"><span class="toc-number">8.4.</span> <span class="toc-text">hacked_4</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-IR"><span class="toc-number">9.</span> <span class="toc-text">数据分析-IR</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#IncidentResponse-1"><span class="toc-number">9.1.</span> <span class="toc-text">IncidentResponse_1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IncidentResponse-2"><span class="toc-number">9.2.</span> <span class="toc-text">IncidentResponse_2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IncidentResponse-3"><span class="toc-number">9.3.</span> <span class="toc-text">IncidentResponse_3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IncidentResponse-4"><span class="toc-number">9.4.</span> <span class="toc-text">IncidentResponse_4</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IncidentResponse-5"><span class="toc-number">9.5.</span> <span class="toc-text">IncidentResponse_5</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IncidentResponse-6"><span class="toc-number">9.6.</span> <span class="toc-text">IncidentResponse_6</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IncidentResponse-7"><span class="toc-number">9.7.</span> <span class="toc-text">IncidentResponse_7</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/09/03/2023%E9%99%87%E5%89%91%E6%9D%AF%E5%88%9D%E8%B5%9B%E5%A4%8D%E7%8E%B0/" title="2023陇剑杯初赛复现">2023陇剑杯初赛复现</a><time datetime="2025-09-03T09:14:16.000Z" title="发表于 2025-09-03 17:14:16">2025-09-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/08/20/2025%E9%95%BF%E5%9F%8E%E6%9D%AF-%E5%8D%8A%E5%86%B3%E8%B5%9B-%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/" title="2025长城杯-半决赛-应急响应">2025长城杯-半决赛-应急响应</a><time datetime="2025-08-20T14:44:19.000Z" title="发表于 2025-08-20 22:44:19">2025-08-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/08/07/2024%E6%95%B0%E8%AF%81%E6%9D%AF%E5%88%9D%E8%B5%9B-%E5%A4%8D%E7%8E%B0/" title="2024数证杯初赛(复现)">2024数证杯初赛(复现)</a><time datetime="2025-08-07T05:44:40.000Z" title="发表于 2025-08-07 13:44:40">2025-08-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/31/2025R3CTF-%E5%A4%8D%E7%8E%B0/" title="2025R3CTF-复现">2025R3CTF-复现</a><time datetime="2025-07-31T14:41:28.000Z" title="发表于 2025-07-31 22:41:28">2025-07-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/30/2025NepCTF/" title="2025NepCTF">2025NepCTF</a><time datetime="2025-07-30T09:29:35.000Z" title="发表于 2025-07-30 17:29:35">2025-07-30</time></div></div></div></div></div></div></main><footer id="footer" style="background: transparent;"><div id="footer-wrap"><div class="copyright">&copy;2025 By Sep</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div><div class="footer_custom_text">Enjoy CTF <a href="https://sep252.github.io/"> at myblog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
