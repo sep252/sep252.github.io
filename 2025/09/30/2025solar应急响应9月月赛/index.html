@@ -1,0 +1,246 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>2025solar应急响应9月月赛 | Sep's Blog</title><meta name="author" content="Sep"><meta name="copyright" content="Sep"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="solar应急响应月赛-9月赛特洛伊挖矿木马事件排查1你是一名初级安全工程师，运维团队报告，公司的一台核心开发服务器（Ubuntu 22.04 LTS）出现CPU使用率异常飙高告警及安全设备检出外联挖矿事件。现在，你需要登录该服务器，排查并处置这一安全事件，并最终找出问题的根源。账号：root，密码：P@ssw0rd  任务11234567任务名称：提交挖矿文件的绝对路径任务分数：100.00任务">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025solar应急响应9月月赛">
+<meta property="og:url" content="https://sep252.github.io/2025/09/30/2025solar%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%949%E6%9C%88%E6%9C%88%E8%B5%9B/index.html">
+<meta property="og:site_name" content="Sep&#39;s Blog">
+<meta property="og:description" content="solar应急响应月赛-9月赛特洛伊挖矿木马事件排查1你是一名初级安全工程师，运维团队报告，公司的一台核心开发服务器（Ubuntu 22.04 LTS）出现CPU使用率异常飙高告警及安全设备检出外联挖矿事件。现在，你需要登录该服务器，排查并处置这一安全事件，并最终找出问题的根源。账号：root，密码：P@ssw0rd  任务11234567任务名称：提交挖矿文件的绝对路径任务分数：100.00任务">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sep252.github.io/avatar.jpg">
+<meta property="article:published_time" content="2025-09-30T06:54:27.000Z">
+<meta property="article:modified_time" content="2025-09-30T06:57:21.401Z">
+<meta property="article:author" content="Sep">
+<meta property="article:tag" content="应急响应">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sep252.github.io/avatar.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "2025solar应急响应9月月赛",
+  "url": "https://sep252.github.io/2025/09/30/2025solar%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%949%E6%9C%88%E6%9C%88%E8%B5%9B/",
+  "image": "https://sep252.github.io/avatar.jpg",
+  "datePublished": "2025-09-30T06:54:27.000Z",
+  "dateModified": "2025-09-30T06:57:21.401Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Sep",
+      "url": "https://sep252.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/selin.ico"><link rel="canonical" href="https://sep252.github.io/2025/09/30/2025solar%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%949%E6%9C%88%E6%9C%88%E8%B5%9B/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '2025solar应急响应9月月赛',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/a.css?1"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><div class="loading-img"></div><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (false) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+btf.addGlobalFn('pjaxSend', () => {
+  Pace.restart()
+}, 'pace_restart')
+
+</script><link rel="stylesheet" href="/css/a.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg" style="background-image: url(/background.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">17</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/search/"><i class="fa-fw fas fa-search"></i><span> 搜索</span></a></div><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><span> 列表</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/default_top_img.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/yingying.jpg" alt="Logo"><span class="site-name">Sep's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">2025solar应急响应9月月赛</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/search/"><i class="fa-fw fas fa-search"></i><span> 搜索</span></a></div><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><span> 列表</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">2025solar应急响应9月月赛</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-09-30T06:54:27.000Z" title="发表于 2025-09-30 14:54:27">2025-09-30</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-09-30T06:57:21.401Z" title="更新于 2025-09-30 14:57:21">2025-09-30</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="solar应急响应月赛-9月赛"><a href="#solar应急响应月赛-9月赛" class="headerlink" title="solar应急响应月赛-9月赛"></a>solar应急响应月赛-9月赛</h2><h3 id="特洛伊挖矿木马事件排查"><a href="#特洛伊挖矿木马事件排查" class="headerlink" title="特洛伊挖矿木马事件排查"></a>特洛伊挖矿木马事件排查</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">你是一名初级安全工程师，运维团队报告，公司的一台核心开发服务器（Ubuntu 22.04 LTS）出现CPU使用率异常飙高告警及安全设备检出外联挖矿事件。现在，你需要登录该服务器，排查并处置这一安全事件，并最终找出问题的根源。账号：root，密码：P@ssw0rd</span><br></pre></td></tr></table></figure>
+
+<h4 id="任务1"><a href="#任务1" class="headerlink" title="任务1"></a><strong>任务1</strong></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">任务名称：提交挖矿文件的绝对路径</span><br><span class="line"></span><br><span class="line">任务分数：100.00</span><br><span class="line"></span><br><span class="line">任务类型：静态Flag</span><br><span class="line"></span><br><span class="line">提交挖矿文件的绝对路径，最终以flag&#123;/xxx/xxx&#125;格式提交</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>&#x2F;tmp&#x2F;kworkerds</strong></p>
+</blockquote>
+<p>root下进行top命令没有反应，更改solar用户密码进入solar用户执行top命令</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250929162307158.png" alt="image-20250929162307158"></p>
+<p>发现正运行的进程中kworkerds反常，猜测这个是恶意挖矿程序，<code>netstat -nlpt</code>确定一下</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250929170918433.png" alt="image-20250929170918433"></p>
+<p><code>find / -name kworkerds</code>得到绝对路径</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250929171123562.png" alt="image-20250929171123562"></p>
+<h4 id="任务2"><a href="#任务2" class="headerlink" title="任务2"></a><strong>任务2</strong></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">任务名称：提交挖矿文件的外联IP与端口</span><br><span class="line"></span><br><span class="line">任务分数：100.00</span><br><span class="line"></span><br><span class="line">任务类型：静态Flag</span><br><span class="line"></span><br><span class="line">提交挖矿文件的外联的IP与端口，最终以flag&#123;ip:port&#125;格式提交</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>104.21.6.99:10235</strong></p>
+</blockquote>
+<p>在之前的<code>netstat -antp</code>可知外联ip和端口</p>
+<h4 id="任务3"><a href="#任务3" class="headerlink" title="任务3"></a><strong>任务3</strong></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">任务名称：守护进程脚本的绝对路径</span><br><span class="line"></span><br><span class="line">任务分数：100.00</span><br><span class="line"></span><br><span class="line">任务类型：静态Flag</span><br><span class="line"></span><br><span class="line">停止挖矿进程并尝试删除挖矿程序，根据异常判断，提交守护进程脚本的绝对路径，最终以flag&#123;/xxx/xxx/xxx/xxx&#125;提交</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>flag{&#x2F;usr&#x2F;bin&#x2F;.0guardian}</strong></p>
+</blockquote>
+<p>尝试直接删除</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250929230047890.png" alt="image-20250929230047890"></p>
+<p>发现失败，遂查看计划任务</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250929230406197.png" alt="image-20250929230406197"></p>
+<p>发现0guardian的很奇怪，它使用root权限一直维持&#x2F;usr&#x2F;bin&#x2F;.0guardian的启动，同时这个.0guardian获取 <code>/tmp</code>目录的状态信息，作为一个“心跳”或“健康检查”的触发器。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250929230538248.png" alt="image-20250929230538248"></p>
+<h4 id="任务4"><a href="#任务4" class="headerlink" title="任务4"></a><strong>任务4</strong></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">任务名称：异常处理</span><br><span class="line"></span><br><span class="line">任务分数：100.00</span><br><span class="line"></span><br><span class="line">任务类型：静态Flag</span><br><span class="line"></span><br><span class="line">根据出现的异常及守护进程脚本，继续排查，以人为本，使用环境内浏览器访问：http://chat.internal-dev.net:8081 获取可疑网址，最终以flag&#123;http://www.example.com&#125;格式提交</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>flag{<a target="_blank" rel="noopener" href="http://www.superlog-pro.com}/">http://www.superlog-pro.com}</a></strong></p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250929234913754.png" alt="image-20250929234913754"></p>
+<h4 id="任务5"><a href="#任务5" class="headerlink" title="任务5"></a><strong>任务5</strong></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">任务名称：分析病毒文件</span><br><span class="line"></span><br><span class="line">任务分数：100.00</span><br><span class="line"></span><br><span class="line">任务类型：静态Flag</span><br><span class="line"></span><br><span class="line">分析病毒文件，提交其感染的所有程序，最终以flag&#123;md5(/usr/bin/whoai,/usr/bin/ls,/usr/bin/top)&#125;进行提交，顺序需以病毒文件中为准</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>flag{dac48e98a53b81b0218e2156e364f7ba}</strong></p>
+</blockquote>
+<p>下载下来strings一下看看</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250929235107957.png" alt="image-20250929235107957"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/bin/ls,/bin/ps,/bin/cat,/bin/rm,/bin/ss,/usr/bin/stat,/usr/bin/top,/usr/bin/wget,/usr/bin/curl,/usr/bin/vi,/usr/bin/sudo</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250929235155528.png" alt="image-20250929235155528"></p>
+<h4 id="任务6"><a href="#任务6" class="headerlink" title="任务6"></a><strong>任务6</strong></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">任务名称：修复系统并恢复文件完整性</span><br><span class="line"></span><br><span class="line">任务分数：100.00</span><br><span class="line"></span><br><span class="line">任务类型：静态Flag</span><br><span class="line"></span><br><span class="line">修复系统并恢复文件完整性：已知所有程序被感染，当前系统属于断网状态，所以作者贴心的在/deb_final目录下存放了对应程序的deb包，请尝试恢复所有程序，恢复完毕后在/var/flag/1文件获取flag</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>flag{e510c5fca680b1b4bd5c9d8d6b3f4bdc}</strong></p>
+</blockquote>
+<p><code>dpkg -i ./*.deb 2&gt;&amp;1 </code>直接安装，然后读取flag</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250929235655657.png" alt="image-20250929235655657"></p>
+<h4 id="任务7"><a href="#任务7" class="headerlink" title="任务7"></a><strong>任务7</strong></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">任务名称：最终清理</span><br><span class="line"></span><br><span class="line">任务分数：100.00</span><br><span class="line"></span><br><span class="line">任务类型：静态Flag</span><br><span class="line"></span><br><span class="line">最终清理：删除挖矿程序、删除计划任务及守护进程及清除相关进程，等待片刻在/var/flag/2获取flag</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>flag{081ce3688c6cd6e2946125081381087c}</strong></p>
+</blockquote>
+<p>pkill 杀掉进程，rm -f 删除文件，</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sep252/pic/image-20250930000558659.png" alt="image-20250930000558659"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://sep252.github.io">Sep</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://sep252.github.io/2025/09/30/2025solar%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%949%E6%9C%88%E6%9C%88%E8%B5%9B/">https://sep252.github.io/2025/09/30/2025solar%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%949%E6%9C%88%E6%9C%88%E8%B5%9B/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://sep252.github.io" target="_blank">Sep's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/">应急响应</a></div><div class="post-share"><div class="social-share" data-image="/avatar.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2025/09/26/2025%E9%99%87%E5%89%91%E6%9D%AF%E5%88%9D%E8%B5%9B-siem/" title="2025陇剑杯初赛-siem"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">2025陇剑杯初赛-siem</div></div><div class="info-2"><div class="info-item-1">siemflag1:攻击者的ip是什么  192.168.41.143  首先释放虚拟机后，登录虚拟机，可以发现是一个wazuh的服务器，遂查看网络端口详情 虽然题目中给了http://ip:80,但实际上确是https://ip:443  进入平台后，发现有三台机器  名为app的ubuntu机器运行着服务，查看其日志  进入Threat...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/08/20/2025%E9%95%BF%E5%9F%8E%E6%9D%AF-%E5%8D%8A%E5%86%B3%E8%B5%9B-%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/" title="2025长城杯-半决赛-应急响应"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-08-20</div><div class="info-item-2">2025长城杯-半决赛-应急响应</div></div><div class="info-2"><div class="info-item-1">2025长城杯国赛半决赛 应急响应小路是一名网络安全网管，据反映发现公司主机上有异常外联信息，据回忆前段时间执行过某些更新脚本（已删除），现在需要协助小路同学进行网络安全应急响应分析，查找木马，进一步分析，寻找攻击源头，获取攻击者主机权限获取 flag...</div></div></div></a><a class="pagination-related" href="/2025/09/26/2025%E9%99%87%E5%89%91%E6%9D%AF-%E5%86%B3%E8%B5%9B-%E5%A4%8D%E7%8E%B0%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/" title="2025陇剑杯-决赛-复现（持续更新）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-09-26</div><div class="info-item-2">2025陇剑杯-决赛-复现（持续更新）</div></div><div class="info-2"><div class="info-item-1">第三届“陇剑杯”网络安全大赛-RHG人工智能赛第1轮webshell应急响应...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Sep</div><div class="author-info-description">Sep的个人blog</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">17</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/sep252" target="_blank" title="GitHub"><i class="fab fa-github" style="color: #hdhfbb;"></i></a><a class="social-icon" href="mailto:2967419306@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #000000;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#solar%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%9C%88%E8%B5%9B-9%E6%9C%88%E8%B5%9B"><span class="toc-number">1.</span> <span class="toc-text">solar应急响应月赛-9月赛</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E6%B4%9B%E4%BC%8A%E6%8C%96%E7%9F%BF%E6%9C%A8%E9%A9%AC%E4%BA%8B%E4%BB%B6%E6%8E%92%E6%9F%A5"><span class="toc-number">1.1.</span> <span class="toc-text">特洛伊挖矿木马事件排查</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A11"><span class="toc-number">1.1.1.</span> <span class="toc-text">任务1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A12"><span class="toc-number">1.1.2.</span> <span class="toc-text">任务2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A13"><span class="toc-number">1.1.3.</span> <span class="toc-text">任务3</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A14"><span class="toc-number">1.1.4.</span> <span class="toc-text">任务4</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A15"><span class="toc-number">1.1.5.</span> <span class="toc-text">任务5</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A16"><span class="toc-number">1.1.6.</span> <span class="toc-text">任务6</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A17"><span class="toc-number">1.1.7.</span> <span class="toc-text">任务7</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/09/30/2025solar%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%949%E6%9C%88%E6%9C%88%E8%B5%9B/" title="2025solar应急响应9月月赛">2025solar应急响应9月月赛</a><time datetime="2025-09-30T06:54:27.000Z" title="发表于 2025-09-30 14:54:27">2025-09-30</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/09/26/2025%E9%99%87%E5%89%91%E6%9D%AF%E5%88%9D%E8%B5%9B-siem/" title="2025陇剑杯初赛-siem">2025陇剑杯初赛-siem</a><time datetime="2025-09-26T07:13:01.000Z" title="发表于 2025-09-26 15:13:01">2025-09-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/09/26/2025%E9%99%87%E5%89%91%E6%9D%AF-%E5%86%B3%E8%B5%9B-%E5%A4%8D%E7%8E%B0%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/" title="2025陇剑杯-决赛-复现（持续更新）">2025陇剑杯-决赛-复现（持续更新）</a><time datetime="2025-09-26T03:08:47.000Z" title="发表于 2025-09-26 11:08:47">2025-09-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/09/22/2025WMCTF-GitHacker/" title="2025WMCTF-GitHacker">2025WMCTF-GitHacker</a><time datetime="2025-09-22T02:52:28.000Z" title="发表于 2025-09-22 10:52:28">2025-09-22</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/09/20/2022%E5%AE%89%E5%BE%BD%E7%BD%91%E5%AE%89%E6%AF%94%E6%AD%A6k8s%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="2022安徽网安比武k8s服务器">2022安徽网安比武k8s服务器</a><time datetime="2025-09-20T15:30:23.000Z" title="发表于 2025-09-20 23:30:23">2025-09-20</time></div></div></div></div></div></div></main><footer id="footer" style="background: transparent;"><div id="footer-wrap"><div class="copyright">&copy;2025 By Sep</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div><div class="footer_custom_text">Enjoy CTF <a href="https://sep252.github.io/"> at myblog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
