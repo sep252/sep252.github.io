@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url><loc>https://sep252.github.io/probe1.html</loc></url>
+<url><loc>https://src-ssrf.bytedance.net/ssrf</loc></url>
+<url><loc>https://src-ssrf.bytedance.net/ssrf?host=zzobs7q.free.beeceptor.com</loc></url>
+<url><loc>https://httpbin.org/redirect-to?url=https%3A%2F%2Fsrc-ssrf.bytedance.net%2Fssrf&amp;status_code=302</loc></url>
+</urlset>
